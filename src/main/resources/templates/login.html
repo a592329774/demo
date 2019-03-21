@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{webjars/element-ui/lib/theme-chalk/index.css}">
+    <script type="text/javascript" th:src="@{/webjars/vue/vue.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/element-ui/lib/index.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/axios/dist/axios.js}"></script>
+    <style>
+    </style>
+</head>
+<body>
+    <div id="app">
+        <el-container>
+
+            <el-header></el-header>
+
+            <el-main>
+                <el-form v-model="userInfo" label-width="80px" size="mini" >
+                    <el-row type="flex" justify="center" >
+                        <el-col :span="6">
+                            <el-form-item label="名称">
+                                <el-input v-model="userInfo.name"></el-input>
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
+                    <el-row type="flex" justify="center" >
+                        <el-col :span="6">
+                            <el-form-item label="年龄">
+                                <el-input v-model="userInfo.age"></el-input>
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
+                </el-form>
+            </el-main>
+
+            <el-footer>dssssssd</el-footer>
+
+        </el-container>
+    </div>
+    <template id="temp">
+        <h1>Hello!</h1>
+    </template>
+</body>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            userInfo:{}
+        },
+        created:function(){
+            axios.post('/getUserInfo').then(function(res){
+                if(res){
+                    var data = res.data ;
+                    app.userInfo = data ;
+                }
+            })
+        },
+       //  template:'#temp'
+    })
+</script>
+</html>

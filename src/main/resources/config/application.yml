@@ -1,0 +1,13 @@
+server:
+  port: 8085
+spring:
+  devtools:
+    restart:
+      enabled: true
+  profiles:
+    active: dev
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+
+
